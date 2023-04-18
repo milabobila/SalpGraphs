@@ -1,0 +1,25 @@
+#packages etc
+library(ggplot2)
+data(seniorsalp, package="ggplot2")
+theme_set(theme_bw())
+
+#scatterplot and linear regression lines for chain
+ggplot(salpchain, aes(x=Number, y=Droptime, color=Morphology)) +
+  geom_point(color='orange') + 
+  geom_smooth(method = "lm", fill = NA, color='red') +
+  labs(y="Droptime (sec)",
+     x="Number of Zooids",
+     title="Droptime increases as number of individuals in chain increases")
+
+cor(salpchain$Droptime, salpchain$Number) #correlation coeficient between number and droptime
+
+
+#scatterplot and following regression- optimal one for chain 
+ggplot(salpchain, aes(x=Number, y=Droptime, color=Morphology)) +
+  geom_point(color='orange') + 
+  geom_smooth(span = 0.3, color='red') + 
+  labs(y="Droptime (sec)",
+     x="Number of Zooids",
+     title="Droptime Reaches a Maximum at 11 zooids")
+
+summary(model)
